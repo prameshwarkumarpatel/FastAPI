@@ -13,6 +13,7 @@ class User(BaseModel):
     result: bool
 
 
+# CREATE
 @app.post("/user")
 def create_user(user: User):
     user_id = len(pawan) + 1
@@ -31,3 +32,39 @@ def create_user(user: User):
         "message": "User created successfully",
         "user": new_user
     }
+
+
+# READ BY USER ID
+@app.get("/user/{user_id}")
+def get_user(user_id: int):
+    for user in pawan:
+        if user["user_id"] == user_id:
+            return user
+
+    return {
+        "message": "User not found"
+    }
+
+
+# READ BY EMAIL
+@app.get("/user")
+def get_user_by_email(email: str):
+    for user in pawan:
+        if user["email"] == email:
+            return user
+
+    return {
+        "message": "User not found"
+    }
+@app.put("/user/{user_id}")
+def update_user(user_id: int, user: User):
+    for existing_user in pawan:
+        if existing_user["user_id"]==user_id:
+            existing_user["name"] = user.name
+            existing_user["age"]= user.age
+            existing_user["email"] = user.email
+            existing_user["result"] = user.result
+            return {
+                "message": "user updated successfully",
+                "user": existing_user
+            }
