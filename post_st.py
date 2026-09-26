@@ -68,3 +68,12 @@ def update_user(user_id: int, user: User):
                 "message": "user updated successfully",
                 "user": existing_user
             }
+@app.delete("/user/{user_id}")
+def delete_user(user_id: int):
+    for existing_user in pawan:
+        if existing_user["user_id"]==user_id:
+            pawan.remove(existing_user)
+            return {
+                "message": "user deleted successfully",
+                "user": existing_user
+            }
