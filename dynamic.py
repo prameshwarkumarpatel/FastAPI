@@ -9,3 +9,4 @@ def get_user(name: str | None = None):
         "message": f"Hello {name}",
         "name": name
     }
+    
