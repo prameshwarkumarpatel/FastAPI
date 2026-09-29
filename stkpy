@@ -1,0 +1,50 @@
+from fastapi import FastAPI, status, HTTPException
+
+app = FastAPI()
+
+
+@app.post("/user", status_code=status.HTTP_201_CREATED)
+def create_user():
+    return {
+        "message": "user_created",
+        "data":user
+    }
+
+
+@app.get("/user")
+def user_get():
+    return {
+        "message": "successfully the code and exiting",
+        "status": "success",
+        "data": {
+            "name": "maya.tech"
+        }
+    }
+
+
+@app.get("/user/{user_id}")
+def user_get_by_id(user_id: int):
+
+    users = [
+        {
+            "id": 1,
+            "name": "prameshwar kumar patel"
+        },
+        {
+            "id": 2,
+            "name": "pawan kumar patel"
+        },
+        {
+            "id": 3,
+            "name": "kumar patel"
+        }
+    ]
+
+    for user in users:
+        if user["id"] == user_id:
+            return user
+
+    raise HTTPException(
+        status_code=404,
+        detail="user not found"
+    )
