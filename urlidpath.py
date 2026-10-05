@@ -31,12 +31,9 @@ def create_user(user: UserUpi):
     def update_users(user_id:int,user:UserUpi,notify:bool=false):
         for x in users:
             if(user[user_id]==user_id):
-                x["username"]:user.name
-                x["username"]:user.age
-                return {
-                    "message":"successfully your message",
-                    "success":true
+                update_user={
+                    "usernaem":x.user,
+                    "age":x.user
                 }
-        return {
-            "message": "not found"
-        }
+                return user.append(update_user)
+        return users
